@@ -7,7 +7,8 @@ class Building:
     """所有地点的基类"""
     buildingCount = 0
 
-    def __init__(self, name="Building", position=Point2D(0, 0)):
+    def __init__(self, index=-1, name="Building", position=Point2D(0, 0)):
+        self.index = index
         self.name = name
         self.position = position
         Building.buildingCount += 1
@@ -19,15 +20,19 @@ class Building:
         logging.debug("Total Building Count: %d" % Building.buildingCount)
 
     def displayBuilding(self, time):
-        logging.debug("Name: " + self.name + ", Position: " + str(self.position))
+        logging.debug(
+            "Log TIME: " + time.time() +
+            "--------Building--------" +
+            "\nName: " + self.name + 
+            "\nPosition: " + str(self.position) +
+            "\nIndex: " + self.index
+            )
 
 class Dormitory(Building):
     """ Type Dormitory"""
 
-    def __init__(self, dorm_index="-1", area="SJTU", name="Dormitory", position=Point2D(0, 0)):
-        Building.__init__(self, name, position)
-        self.dorm_index = dorm_index
-        self.area = area
+    def __init__(self, index=-1, name="Dormitory", position=Point2D(0, 0)):
+        Building.__init__(self, index, name, position)
 
     def displayBuilding(self):
         logging.debug(
@@ -35,26 +40,24 @@ class Dormitory(Building):
             "--------Dormitory--------" +
             "\nName: " + self.name + 
             "\nPosition: " + str(self.position) +
-            "\nDorm Index: " + self.dorm_index +
-            "\nArea: " + self.area
+            "\nDorm Index: " + self.index
             )
 
 class Classroom(Building):
     """Type Classroom"""
 
-    def __init__(self, capacity=0, classroom_index="-1", area="SJTU", name="Classroom", position=Point2D(0, 0)):
-        Building.__init__(self, name, position)
-        self.classroom_index = classroom_index
+    def __init__(self, index=-1, name="Classroom", area="SJTU", capacity=0, position=Point2D(0, 0)):
+        Building.__init__(self, index, name, position)
         self.area = area
         self.capacity = capacity
 
     def displayBuilding(self, time):
         logging.debug(
             "Log TIME: " + time.time() +
-            "--------Dormitory--------" +
+            "--------Classroom--------" +
             "\nName: " + self.name + 
             "\nPosition: " + str(self.position) +
-            "\nClassroom Index: " + self.classroom_index +
+            "\nClassroom Index: " + self.index +
             "\nArea: " + self.area +
             "\nCapacity: " + self.capacity
             )

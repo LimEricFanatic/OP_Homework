@@ -14,6 +14,8 @@ class Rat:
         self.fitness = 0
         self.relative_fitness = 0
         self.accumulation_probability = 0
+        self.classroom_dict = {}      # {(classroom_index, class_date): class_index}         {(100,15): 12}
+        self.class_dict = {}        # {(class_index, classroom_index, class_date): occupy}   {(12,100,15): 1}
         Rat.ratCount += 1
 
     def Copy(self):  # 在复制时可以考虑将 Initialize 删去
@@ -28,21 +30,23 @@ class Rat:
 
     def Initialize(self, depot_num, factory_num, agent_num, env):
         logging.debug("Rat Initialize begin!")
-        for i in range(self.env.agent_num):
-            self.chrome_list.append(Chrome(i))
-        init_agent_list = list(range(0, agent_num))
-        init_factory_list = list(range(0, factory_num))
-        random.shuffle(init_factory_list)
-        logging.debug("init allocate start!")
-        while len(init_factory_list) != 0:
-            test_factory = init_factory_list[0]
-            test_agent = random.choice(init_agent_list)
-            test_chrome = self.chrome_list[test_agent]
-            if test_chrome.init_check(test_agent, test_factory, env):
-                test_chrome.gene_list.append(test_factory)
-                del init_factory_list[0]
-                logging.debug("Factory 0%d has been allocated to Agent 0%d." % (test_factory, test_agent))
-        self.Fitness_calculation()
+        # for i in range(self.env.agent_num):
+        #     self.chrome_list.append(Chrome(i))
+        # init_agent_list = list(range(0, agent_num))
+        # init_factory_list = list(range(0, factory_num))
+        # random.shuffle(init_factory_list)
+        # logging.debug("init allocate start!")
+        # while len(init_factory_list) != 0:
+        #     test_factory = init_factory_list[0]
+        #     test_agent = random.choice(init_agent_list)
+        #     test_chrome = self.chrome_list[test_agent]
+        #     if test_chrome.init_check(test_agent, test_factory, env):
+        #         test_chrome.gene_list.append(test_factory)
+        #         del init_factory_list[0]
+        #         logging.debug("Factory 0%d has been allocated to Agent 0%d." % (test_factory, test_agent))
+        # self.Fitness_calculation()
+
+        for i in range(self.env.)        
         logging.debug("Rat Initialize Done!")
 
     def Delete_redundant_element(self, compare_list, chrome_number):

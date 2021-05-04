@@ -10,7 +10,6 @@ class Environment:
         self.dorm_list = []
         self.classroom_list = []
         self.agent_list = []
-        self.notFullRoom = {}       # {'class_index': classroom_index}
         self.dorm_num = 0
         self.classroom_num = 0
         self.agent_num = 0
